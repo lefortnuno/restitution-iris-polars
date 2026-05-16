@@ -1,7 +1,6 @@
 from typing import List, Dict, Union, Optional
-from collections import defaultdict
 import numpy as np
-import pandas as pd
+import polars as pl
 
 
 def cast_numpy_types(obj):
@@ -15,10 +14,10 @@ def cast_numpy_types(obj):
         return float(obj)
     else:
         return obj
-    
+
 
 def percentile_postgres_style(
-    data: List[Dict],
+    data: Union[List[Dict], "pl.DataFrame"],
     column: str,
     percentile: float,
     group_by: Optional[Union[str, List[str]]] = None
@@ -26,7 +25,7 @@ def percentile_postgres_style(
     """
     Calcule le percentile (type PERCENTILE_CONT) avec ou sans GROUP BY.
 
-    :param data: Liste de dictionnaires
+    :param data: Liste de dictionnaires ou polars.DataFrame
     :param column: Nom de la colonne à analyser
     :param percentile: Float entre 0 et 1 (ex: 0.5 pour médiane)
     :param group_by: str ou list[str] pour le groupement
@@ -38,11 +37,11 @@ def percentile_postgres_style(
     def compute_percentile(values: List[float]) -> Optional[float]:
         return round(float(np.percentile(values, percentile * 100)), 2) if values else 0.0
 
-    df = pd.DataFrame(data)
-    if df.empty or column not in df:
+    df = data if isinstance(data, pl.DataFrame) else pl.DataFrame(data)
+    if df.is_empty() or column not in df.columns:
         return 0.0
 
-    df = df.dropna(subset=[column])
+    df = df.drop_nulls(subset=[column])
 
     if group_by:
         if isinstance(group_by, str):
@@ -52,18 +51,19 @@ def percentile_postgres_style(
             if col not in df.columns:
                 return 0.0
 
-        result = (
-            df.groupby(group_by)[column]
-            .apply(lambda x: round(compute_percentile(x.tolist()), 2))
-            .reset_index()
-        )
- 
-        return cast_numpy_types([
-            {**{k: row[k] for k in group_by}, column: row[column]}
-             for _, row in result.iterrows()
-        ])
+        result = []
+        for keys, sub in df.group_by(group_by, maintain_order=True):
+            values = sub.get_column(column).to_list()
+            entry = {}
+            if isinstance(keys, tuple):
+                for k, v in zip(group_by, keys):
+                    entry[k] = v
+            else:
+                entry[group_by[0]] = keys
+            entry[column] = round(compute_percentile(values), 2)
+            result.append(entry)
 
+        return cast_numpy_types(result)
 
-    # Percentile global
-    values = df[column].tolist()
+    values = df.get_column(column).to_list()
     return [{column: compute_percentile(values)}]

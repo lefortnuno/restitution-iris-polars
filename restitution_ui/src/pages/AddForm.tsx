@@ -37,7 +37,7 @@ export default function AddForm() {
   const mutation = useMutation({
     mutationFn: createRestitution,
     onSuccess: (data) => {
-      toast.success("Restitution créée avec succès :", data.as_nom);
+      toast.success(`Restitution créée avec succès : ${data.nom ?? data.as_nom ?? ""}`);
       navigate("/");
       methods.reset();
     },

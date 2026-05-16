@@ -1,29 +1,35 @@
 from typing import List, Dict, Union, Optional
-import pandas as pd
+import polars as pl
+
 
 def show_postgres_style(
-    data: List[Dict],
+    data: Union[List[Dict], "pl.DataFrame"],
     champ: str,
     champ_groupe: Optional[Union[str, List[str]]] = None
 ) -> Union[float, int, List[tuple]]:
     """
-    Calcule la somme façon PostgreSQL, avec groupement possible.
+    Projette une ou plusieurs colonnes (équivalent SELECT).
 
-    :param data: Liste de dictionnaires
-    :param column: Colonne cible a afficher
-    :param group_by: str ou list[str] : autre colonne a afficher
-    :return: Liste colonne et leur donnee
+    :param data: Liste de dictionnaires ou polars.DataFrame
+    :param champ: Colonne cible à afficher
+    :param champ_groupe: str ou list[str] : autres colonnes à afficher
+    :return: Liste de dicts {colonne: valeur}
     """
-    df = pd.DataFrame(data)
+    df = data if isinstance(data, pl.DataFrame) else pl.DataFrame(data)
     champs_valides = [champ]
-    
+
     if champ_groupe:
         if isinstance(champ_groupe, str):
             champs_valides.append(champ_groupe)
         elif isinstance(champ_groupe, list):
             champs_valides.extend(champ_groupe)
-    
+
+    if df.is_empty():
+        return []
+
     champs = [c for c in champs_valides if c in df.columns]
-    
-    return df[champs].to_dict(orient="records")
-         
+
+    if not champs:
+        return []
+
+    return df.select(champs).to_dicts()

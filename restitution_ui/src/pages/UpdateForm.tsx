@@ -73,7 +73,7 @@ export default function UpdateForm() {
     mutationFn: (formData: RestitutionFormDataType) =>
       updateRestitutionID(Number(restitutionId), formData),
     onSuccess: (data) => {
-      toast.success(`Restitution mise à jour avec succès : ${data.as_nom}`);
+      toast.success(`Restitution mise à jour avec succès : ${data.nom ?? data.as_nom ?? ""}`);
       navigate("/");
     },
     onError: () => {

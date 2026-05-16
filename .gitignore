@@ -1,10 +1,58 @@
+# --- Node ---
 **/node_modules
-# **/.env
-docs/*
-logs/*
-!docs/Document_Conception_Restitution.pdf
-**/.vscode 
-**/__pycache__  
+
+# --- Python ---
+**/__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+**/.pytest_cache
+**/.mypy_cache
+**/.ruff_cache
+
+# --- Virtual envs ---
+**/venv/
+**/.venv/
+**/Envs/
+
+# --- Secrets / Env (le fichier env sans extension contient des clés API) ---
 **/.env
 !restitution_ui/.env
+api_restitution/env
+
+# --- Bases de données locales (dev SQLite) ---
+*.sqlite3
+*.sqlite3-journal
+
+# --- Celery dev artifacts ---
+api_restitution/celery_results_dev/
+api_restitution/celerybeat-schedule
+
+# --- Logs ---
+logs/*
+*.log
+
+# --- IDE ---
+**/.vscode
+**/.idea
+*.swp
+*.swo
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- Claude Code (local config) ---
+.claude/
+
+# --- Docs ---
+docs/*
+!docs/Document_Conception_Restitution.pdf
+
+# --- Nginx certs ---
 nginx/certs/*
+
+# --- Build outputs ---
+restitution_ui/build/
+api_restitution/static/
