@@ -1,0 +1,738 @@
+[
+  {
+    "formats_selected": [
+      {
+        "id_structure": 5,
+        "name_structure": "CREDIT_CREANCE"
+      }
+    ],
+    "jointures": [],
+    "affichages": [
+      {
+        "nom_affichage": "Diagramme circulaire"
+      }
+    ],
+    "llmmodeles": [
+      {
+        "libelle_llm": "qwen/qwen3-32b"
+      }
+    ],
+    "filtres_pop": [],
+    "operation_selected": [
+      {
+        "conditions": [],
+        "expressions": [
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": "("
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": "avg",
+            "operateur_arithmetique": "("
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": "CREDIT_CREANCE.Mnt_Impaye",
+            "operateur_arithmetique": null
+          },
+          {
+            "clause_regroupement": [
+              {
+                "champs_cible": "CREDIT_CREANCE.Flag_restructure"
+              }
+            ],
+            "valeur": null,
+            "operateur_arithmetique": ",("
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": ")"
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": ")"
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": ")"
+          }
+        ],
+        "as_nom": "MoyenneMT"
+      }
+    ],
+    "champs": [
+      {
+        "nom": "MoyenneMT",
+        "as_nom": "MoyenneMT",
+        "taille": null,
+        "position": null,
+        "parametre": null,
+        "separateur": null,
+        "type": "op_",
+        "typeAttribut": null
+      }
+    ],
+    "nom": "Moyenne Global Montant Impayé par Flag",
+    "description": "",
+    "status_llm": true
+  },
+  {
+    "formats_selected": [{ "id_structure": 6, "name_structure": "GARANTIES" }],
+    "jointures": [],
+    "affichages": [{ "nom_affichage": "Tableau croisée dynamique" }],
+    "llmmodeles": [
+      {
+        "libelle_llm": "qwen/qwen3-32b"
+      }
+    ],
+    "filtres_pop": [],
+    "operation_selected": [
+      {
+        "conditions": [],
+        "expressions": [
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": "("
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": "sum",
+            "operateur_arithmetique": "("
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": "GARANTIES.Montant_Couverture",
+            "operateur_arithmetique": null
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": ")"
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": ")"
+          }
+        ],
+        "as_nom": "SommeM"
+      }
+    ],
+    "champs": [
+      {
+        "nom": "GARANTIES.Code_Tiers",
+        "as_nom": "0-GARANTIES.Code_Tiers",
+        "taille": null,
+        "position": null,
+        "parametre": null,
+        "separateur": null,
+        "type": "none",
+        "typeAttribut": "VARCHAR"
+      },
+      {
+        "nom": "GARANTIES.Type_Garantie",
+        "as_nom": "1-GARANTIES.Type_Garantie",
+        "taille": null,
+        "position": null,
+        "parametre": null,
+        "separateur": null,
+        "type": "none",
+        "typeAttribut": "VARCHAR"
+      },
+      {
+        "nom": "SommeM",
+        "as_nom": "SommeM",
+        "taille": null,
+        "position": null,
+        "parametre": null,
+        "separateur": null,
+        "type": "op_",
+        "typeAttribut": null
+      }
+    ],
+    "nom": "Montant Couverture par type et Code de Garantie",
+    "description": "",
+    "status_llm": true
+  },
+  {
+    "formats_selected": [{ "id_structure": 7, "name_structure": "AGIOS" }],
+    "jointures": [],
+    "affichages": [{ "nom_affichage": "Graphique linéaire" }],
+    "llmmodeles": [
+      {
+        "libelle_llm": "qwen/qwen3-32b"
+      }
+    ],
+    "filtres_pop": [],
+    "operation_selected": [
+      {
+        "conditions": [],
+        "expressions": [
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": "("
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": "sum",
+            "operateur_arithmetique": "("
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": "AGIOS.Taux_interet_annuel",
+            "operateur_arithmetique": null
+          },
+          {
+            "clause_regroupement": [
+              {
+                "champs_cible": "AGIOS.Code_Tiers"
+              }
+            ],
+            "valeur": null,
+            "operateur_arithmetique": ",("
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": ")"
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": ")"
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": ")"
+          }
+        ],
+        "as_nom": "EvTx"
+      }
+    ],
+    "champs": [
+      {
+        "nom": null,
+        "as_nom": null,
+        "taille": null,
+        "position": null,
+        "parametre": null,
+        "separateur": null,
+        "type": "AxesY",
+        "typeAttribut": "Integer"
+      },
+      {
+        "nom": "AGIOS.Date_dernier_calcul",
+        "as_nom": "AxesX-67",
+        "taille": null,
+        "position": null,
+        "parametre": "AGIOS.Date_dernier_calcul",
+        "separateur": null,
+        "type": "AxesX",
+        "typeAttribut": "DATE"
+      },
+      {
+        "nom": "EvTx",
+        "as_nom": "EvTx",
+        "taille": null,
+        "position": null,
+        "parametre": null,
+        "separateur": null,
+        "type": "op_",
+        "typeAttribut": null
+      }
+    ],
+    "nom": "Evolution Taux Interet Annuel des Clients",
+    "description": "",
+    "status_llm": true
+  },
+  {
+    "formats_selected": [{ "id_structure": 7, "name_structure": "AGIOS" }],
+    "jointures": [],
+    "affichages": [{ "nom_affichage": "Graphique linéaire" }],
+    "llmmodeles": [
+      {
+        "libelle_llm": "qwen/qwen3-32b"
+      }
+    ],
+    "filtres_pop": [],
+    "operation_selected": [
+      {
+        "conditions": [],
+        "expressions": [
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": "("
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": "sum",
+            "operateur_arithmetique": "("
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": "AGIOS.Taux_interet_annuel",
+            "operateur_arithmetique": null
+          },
+          {
+            "clause_regroupement": [
+              {
+                "champs_cible": "AGIOS.Code_Tiers"
+              }
+            ],
+            "valeur": null,
+            "operateur_arithmetique": ",("
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": ")"
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": ")"
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": ")"
+          }
+        ],
+        "as_nom": "EvTx"
+      }
+    ],
+    "champs": [
+      {
+        "nom": null,
+        "as_nom": null,
+        "taille": null,
+        "position": null,
+        "parametre": null,
+        "separateur": null,
+        "type": "AxesY",
+        "typeAttribut": "Integer"
+      },
+      {
+        "nom": "AGIOS.Date_dernier_calcul",
+        "as_nom": "AxesX-67",
+        "taille": null,
+        "position": null,
+        "parametre": "AGIOS.Date_dernier_calcul",
+        "separateur": null,
+        "type": "AxesX",
+        "typeAttribut": "DATE"
+      },
+      {
+        "nom": "EvTx",
+        "as_nom": "EvTx",
+        "taille": null,
+        "position": null,
+        "parametre": null,
+        "separateur": null,
+        "type": "op_",
+        "typeAttribut": null
+      }
+    ],
+    "nom": "Evolution Taux Interet Annuel des Clients",
+    "description": "",
+    "status_llm": true
+  },
+  {
+    "formats_selected": [
+      { "id_structure": 3, "name_structure": "AUDIT_BANCAIRE" }
+    ],
+    "jointures": [],
+    "affichages": [{ "nom_affichage": "Cartographie" }],
+    "llmmodeles": [
+      {
+        "libelle_llm": "qwen/qwen3-32b"
+      }
+    ],
+    "filtres_pop": [],
+    "operation_selected": [
+      {
+        "conditions": [],
+        "expressions": [
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": "("
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": "avg",
+            "operateur_arithmetique": "("
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": "AUDIT_BANCAIRE.montent",
+            "operateur_arithmetique": null
+          },
+          {
+            "clause_regroupement": [
+              {
+                "champs_cible": "AUDIT_BANCAIRE.compt"
+              }
+            ],
+            "valeur": null,
+            "operateur_arithmetique": ",("
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": ")"
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": ")"
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": ")"
+          }
+        ],
+        "as_nom": "M_Vente"
+      }
+    ],
+    "champs": [
+      {
+        "nom": "AUDIT_BANCAIRE.lat",
+        "as_nom": "Latitude-857",
+        "taille": null,
+        "position": null,
+        "parametre": "AUDIT_BANCAIRE.lat",
+        "separateur": null,
+        "type": "lat",
+        "typeAttribut": "integer"
+      },
+      {
+        "nom": "AUDIT_BANCAIRE.lon",
+        "as_nom": "Longitude-858",
+        "taille": null,
+        "position": null,
+        "parametre": "AUDIT_BANCAIRE.lon",
+        "separateur": null,
+        "type": "lon",
+        "typeAttribut": "integer"
+      },
+      {
+        "nom": "maps.Pays",
+        "as_nom": "maps-niv",
+        "taille": null,
+        "position": null,
+        "parametre": "maps.Pays",
+        "separateur": null,
+        "type": "maps",
+        "typeAttribut": null
+      },
+      {
+        "nom": "M_Vente",
+        "as_nom": "M_Vente",
+        "taille": null,
+        "position": null,
+        "parametre": null,
+        "separateur": null,
+        "type": "op_",
+        "typeAttribut": null
+      }
+    ],
+    "nom": "Stat Env",
+    "description": "Moyenne des ventes par pays et par compte",
+    "status_llm": true
+  },
+  {
+    "formats_selected": [
+      {
+        "id_structure": 6,
+        "name_structure": "GARANTIES"
+      }
+    ],
+    "jointures": [],
+    "affichages": [
+      {
+        "nom_affichage": "Histogramme"
+      }
+    ],
+    "llmmodeles": [
+      {
+        "libelle_llm": "qwen/qwen3-32b"
+      }
+    ],
+    "filtres_pop": [],
+    "operation_selected": [
+      {
+        "conditions": [],
+        "expressions": [
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": "("
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": "sum",
+            "operateur_arithmetique": "("
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": "GARANTIES.Montant_Couverture",
+            "operateur_arithmetique": null
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": ")"
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": ")"
+          }
+        ],
+        "as_nom": "Sommation"
+      }
+    ],
+    "champs": [
+      {
+        "nom": null,
+        "as_nom": null,
+        "taille": null,
+        "position": null,
+        "parametre": null,
+        "separateur": null,
+        "type": "AxesY",
+        "typeAttribut": "Integer"
+      },
+      {
+        "nom": "Sommation",
+        "as_nom": "Sommation",
+        "taille": null,
+        "position": null,
+        "parametre": null,
+        "separateur": null,
+        "type": "op_",
+        "typeAttribut": null
+      },
+      {
+        "nom": "GARANTIES.Code_Tiers",
+        "as_nom": "AxesX-52",
+        "taille": null,
+        "position": null,
+        "parametre": "GARANTIES.Code_Tiers",
+        "separateur": null,
+        "type": "AxesX",
+        "typeAttribut": "VARCHAR"
+      }
+    ],
+    "nom": "Montant Couverture par Code de Garantie",
+    "description": "",
+    "status_llm": true
+  },
+  {
+    "formats_selected": [
+      {
+        "id_structure": 6,
+        "name_structure": "GARANTIES"
+      }
+    ],
+    "jointures": [],
+    "affichages": [
+      {
+        "nom_affichage": "Histogramme"
+      }
+    ],
+    "llmmodeles": [
+      {
+        "libelle_llm": "qwen/qwen3-32b"
+      }
+    ],
+    "filtres_pop": [],
+    "operation_selected": [
+      {
+        "conditions": [],
+        "expressions": [
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": "("
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": "sum",
+            "operateur_arithmetique": "("
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": "GARANTIES.Montant_Couverture",
+            "operateur_arithmetique": null
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": ")"
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": ")"
+          }
+        ],
+        "as_nom": "SUM"
+      }
+    ],
+    "champs": [
+      {
+        "nom": null,
+        "as_nom": null,
+        "taille": null,
+        "position": null,
+        "parametre": null,
+        "separateur": null,
+        "type": "AxesY",
+        "typeAttribut": "Integer"
+      },
+      {
+        "nom": "GARANTIES.Date_ARRETE",
+        "as_nom": "AxesX-58",
+        "taille": null,
+        "position": null,
+        "parametre": "GARANTIES.Date_ARRETE",
+        "separateur": null,
+        "type": "AxesX",
+        "typeAttribut": "DATE"
+      },
+      {
+        "nom": "SUM",
+        "as_nom": "SUM",
+        "taille": null,
+        "position": null,
+        "parametre": null,
+        "separateur": null,
+        "type": "op_",
+        "typeAttribut": null
+      }
+    ],
+    "nom": "Montant Couverture par date d'arret",
+    "description": "",
+    "status_llm": true
+  },
+  {
+    "formats_selected": [
+      {
+        "id_structure": 3,
+        "name_structure": "AUDIT_BANCAIRE"
+      }
+    ],
+    "jointures": [],
+    "affichages": [
+      {
+        "nom_affichage": "Tableau simple"
+      }
+    ],
+    "llmmodeles": [
+      {
+        "libelle_llm": "qwen/qwen3-32b"
+      }
+    ],
+    "filtres_pop": [],
+    "operation_selected": [
+      {
+        "conditions": [],
+        "expressions": [
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": "("
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": "show",
+            "operateur_arithmetique": "("
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": "AUDIT_BANCAIRE.montent",
+            "operateur_arithmetique": null
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": ")"
+          },
+          {
+            "clause_regroupement": [],
+            "valeur": null,
+            "operateur_arithmetique": ")"
+          }
+        ],
+        "as_nom": "montant"
+      }
+    ],
+    "champs": [
+      {
+        "nom": "AUDIT_BANCAIRE.compt",
+        "as_nom": "0-AUDIT_BANCAIRE.compt",
+        "taille": null,
+        "position": null,
+        "parametre": null,
+        "separateur": null,
+        "type": "none",
+        "typeAttribut": "VARCHAR"
+      },
+      {
+        "nom": "AUDIT_BANCAIRE.codeT",
+        "as_nom": "1-AUDIT_BANCAIRE.codeT",
+        "taille": null,
+        "position": null,
+        "parametre": null,
+        "separateur": null,
+        "type": "none",
+        "typeAttribut": "VARCHAR"
+      },
+      {
+        "nom": "AUDIT_BANCAIRE.region",
+        "as_nom": "2-AUDIT_BANCAIRE.region",
+        "taille": null,
+        "position": null,
+        "parametre": null,
+        "separateur": null,
+        "type": "none",
+        "typeAttribut": "VARCHAR"
+      },
+      {
+        "nom": "AUDIT_BANCAIRE.date",
+        "as_nom": "3-AUDIT_BANCAIRE.date",
+        "taille": null,
+        "position": null,
+        "parametre": null,
+        "separateur": null,
+        "type": "none",
+        "typeAttribut": "date"
+      },
+      {
+        "nom": "montant",
+        "as_nom": "montant",
+        "taille": null,
+        "position": null,
+        "parametre": null,
+        "separateur": null,
+        "type": "op_",
+        "typeAttribut": null
+      }
+    ],
+    "nom": "Affichage Basique",
+    "description": "",
+    "status_llm": true
+  }
+]
